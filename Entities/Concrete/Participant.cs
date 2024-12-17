@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
+using  Core.Entities; // Core.Entities eklendi
+
 
 namespace Entities.Concrete
 {
-	public  class Participant
+	public  class Participant:Entity<int>
 	{
 		public string Name { get; set; }
 		public string Surname { get; set; }
