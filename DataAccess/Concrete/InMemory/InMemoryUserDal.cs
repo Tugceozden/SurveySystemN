@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.InMemory
 {
-	public class InMemoryUserDal : IUserDal
+	public class InMemoryUserDal 
 	{
 		private readonly HashSet<User>_users;
 		public void Add(IUserDal entity)

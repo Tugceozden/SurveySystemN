@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.InMemory
 {
-	public class InMemorySurveyResultDal : IEntityRepository<SurveyResult, int>
+	public class InMemorySurveyResultDal 
 	{
 
 		private readonly HashSet<SurveyResult> _surveyResults = new();
@@ -24,7 +24,7 @@ namespace DataAccess.Concrete.InMemory
 
 		public void Delete(SurveyResult entity)
 		{
-			entity.DeleteAt = DateTime.Now;
+			entity.DeletedAt = DateTime.Now;
 
 		}
 
