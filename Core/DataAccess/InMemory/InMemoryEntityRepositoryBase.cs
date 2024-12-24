@@ -35,7 +35,7 @@ namespace Core.DataAccess.InMemory
 		{
 			throw new NotImplementedException();
 		}
-
+		
 		public void Update(TEntity entity)
 		{
 			throw new NotImplementedException();
