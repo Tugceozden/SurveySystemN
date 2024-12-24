@@ -33,9 +33,12 @@ namespace Core.DataAccess.InMemory
 
 		public IList<TEntity> GetList()
 		{
-			throw new NotImplementedException();
+			IList<TEntity> entities = _entities
+		  .Where(e => e.DeletedAt.HasValue == false)
+			.ToList();
+			return entities;	
 		}
-
+		
 		public void Update(TEntity entity)
 		{
 			throw new NotImplementedException();
