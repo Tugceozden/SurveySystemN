@@ -2,7 +2,8 @@
 
 namespace Core.DataAccess.InMemory
 {
-	public class InMemoryEntityRepositoryBase<TEntity, TEntityId> : IEntityRepository<TEntity, TEntityId>
+	public class InMemoryEntityRepositoryBase<TEntity, TEntityId> 
+		: IEntityRepository<TEntity, TEntityId>
 		where TEntity : class, IEntity<TEntityId>, new()
 
 	{

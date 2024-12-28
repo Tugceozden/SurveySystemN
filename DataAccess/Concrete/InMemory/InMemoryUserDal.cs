@@ -13,6 +13,7 @@ namespace DataAccess.Concrete.InMemory
 		private readonly HashSet<User> _users = new();
 
 		public void Add(User entity)
+
 		{
 			_users.Add(entity);
 		}
