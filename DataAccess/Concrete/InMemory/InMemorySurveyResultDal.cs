@@ -10,35 +10,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.InMemory
 {
-	public class InMemorySurveyResultDal : ISurveyResultDal
+	public class InMemorySurveyResultDal : InMemoryEntityRepositoryBase<SurveyResult,int>, ISurveyResultDal
 	{
 
-		private readonly HashSet<SurveyResult> _surveyResults = new();
-
-		public void Add(SurveyResult entity)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Delete(SurveyResult entity)
-		{
-			throw new NotImplementedException();
-		}
-
-		public SurveyResult? GetById(int id)
-		{
-			throw new NotImplementedException();
-		}
-
-		public IList<SurveyResult> GetList()
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Update(SurveyResult entity)
-		{
-			throw new NotImplementedException();
-		}
+		
 	}
 }
 	

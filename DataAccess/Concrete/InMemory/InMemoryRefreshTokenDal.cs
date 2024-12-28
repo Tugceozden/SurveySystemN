@@ -11,33 +11,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.InMemory
 {
-	public class InMemoryRefreshTokenDal : IRefreshTokenDal
+	public class InMemoryRefreshTokenDal :InMemoryEntityRepositoryBase<RefreshToken,int>,  IRefreshTokenDal
 	{
-		private readonly HashSet<RefreshToken> _refreshToken = new();
-
-		public void Add(RefreshToken entity)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Delete(RefreshToken entity)
-		{
-			throw new NotImplementedException();
-		}
-
-		public RefreshToken? GetById(int id)
-		{
-			throw new NotImplementedException();
-		}
-
-		public IList<RefreshToken> GetList()
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Update(RefreshToken entity)
-		{
-			throw new NotImplementedException();
-		}
+		
+			
 	}
 }

@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.InMemory;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,33 +9,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.InMemory
 {
-	public class InMemoryQuestionDal : IQuestionDal
+	public class InMemoryQuestionDal :InMemoryEntityRepositoryBase<Question,int>, IQuestionDal
 	{
-		private readonly HashSet<Question> _questions = new();
+		
 
-		public void Add(Question entity)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Delete(Question entity)
-		{
-			throw new NotImplementedException();
-		}
-
-		public Question? GetById(int id)
-		{
-			throw new NotImplementedException();
-		}
-
-		public IList<Question> GetList()
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Update(Question entity)
-		{
-			throw new NotImplementedException();
-		}
+		
 	}
 }
