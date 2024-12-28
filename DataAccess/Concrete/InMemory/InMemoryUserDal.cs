@@ -1,39 +1,45 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.InMemory;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace DataAccess.Concrete.InMemory
 {
-	public class InMemoryUserDal 
+	public class InMemoryUserDal :InMemoryEntityRepositoryBase<User,int>, IUserDal
 	{
-		private readonly HashSet<User>_users;
-		public void Add(IUserDal entity)
+		private readonly HashSet<User> _users = new();
+
+		public void Add(User entity)
 		{
-			throw new NotImplementedException();
+			_users.Add(entity);
 		}
 
-		public void Delete(IUserDal entity)
+		public void Delete(User entity)
 		{
-			throw new NotImplementedException();
+			_users.Remove(entity);
 		}
 
-		public IUserDal GetById(int id)
+		public User? GetById(int id)
 		{
-			throw new NotImplementedException();
+			return _users.FirstOrDefault(u => u.Id == id);
 		}
 
-		public List<IUserDal> GetList()
+		public IList<User> GetList()
 		{
-			throw new NotImplementedException();
+			return _users.ToList();
 		}
 
-		public void Update(IUserDal entity)
+		public void Update(User entity)
 		{
-			throw new NotImplementedException();
+			var userToUpdate = _users.FirstOrDefault(u => u.Id == entity.Id);
+			if (userToUpdate != null)
+			{
+				_users.Remove(userToUpdate);
+				_users.Add(entity);  // Güncellenmiş haliyle tekrar ekle
+			}
 		}
 	}
 }

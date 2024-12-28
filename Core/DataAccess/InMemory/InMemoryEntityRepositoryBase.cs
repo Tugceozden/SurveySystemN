@@ -41,12 +41,8 @@ namespace Core.DataAccess.InMemory
 		
 		public void Update(TEntity entity)
 		{
-			throw new NotImplementedException();
-		}
+			entity.UpdateAt = DateTime.UtcNow;		}
 
-		IList<TEntity> IEntityRepository<TEntity, TEntityId>.GetList()
-		{
-			throw new NotImplementedException();
-		}
+		
 	}
 }
