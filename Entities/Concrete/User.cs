@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-	public class User:Entity<int>
+	public class User:Entity<int> 
 	{
 		public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = default!;
 

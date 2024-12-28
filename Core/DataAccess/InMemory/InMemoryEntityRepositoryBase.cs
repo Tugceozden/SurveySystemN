@@ -1,9 +1,4 @@
 ﻿using Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.DataAccess.InMemory
 {
@@ -14,13 +9,13 @@ namespace Core.DataAccess.InMemory
 		private readonly HashSet<TEntity> _entities = new();
 		public void Add(TEntity entity)
 		{
-			entity.CreatedAt = DateTime.Now;	
+			entity.CreatedAt = DateTime.UtcNow;	
 			_entities.Add(entity);	
 		}
 
 		public void Delete(TEntity entity)
 		{
-			entity.DeletedAt = DateTime.Now;
+			entity.DeletedAt = DateTime.UtcNow;
 			_entities.Remove(entity);	
 
 		}
@@ -41,12 +36,8 @@ namespace Core.DataAccess.InMemory
 		
 		public void Update(TEntity entity)
 		{
-			throw new NotImplementedException();
-		}
+			entity.UpdateAt = DateTime.UtcNow;		}
 
-		IList<TEntity> IEntityRepository<TEntity, TEntityId>.GetList()
-		{
-			throw new NotImplementedException();
-		}
+		
 	}
 }

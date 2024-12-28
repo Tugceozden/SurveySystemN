@@ -1,37 +1,38 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.InMemory;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace DataAccess.Concrete.InMemory
 {
-	public class InMemoryUserDal 
+	public class InMemoryUserDal :IUserDal
 	{
-		private readonly HashSet<User>_users;
-		public void Add(IUserDal entity)
+		private readonly HashSet<User> _users = new();
+
+		public void Add(User entity)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void Delete(IUserDal entity)
+		public void Delete(User entity)
 		{
 			throw new NotImplementedException();
 		}
 
-		public IUserDal GetById(int id)
+		public User? GetById(int id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public List<IUserDal> GetList()
+		public IList<User> GetList()
 		{
 			throw new NotImplementedException();
 		}
 
-		public void Update(IUserDal entity)
+		public void Update(User entity)
 		{
 			throw new NotImplementedException();
 		}
