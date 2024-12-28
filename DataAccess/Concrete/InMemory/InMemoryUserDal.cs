@@ -14,22 +14,22 @@ namespace DataAccess.Concrete.InMemory
 
 		public void Add(User entity)
 		{
-			throw new NotImplementedException();
+			_users.Add(entity);
 		}
 
 		public void Delete(User entity)
 		{
-			throw new NotImplementedException();
+			_users.Remove(entity);
 		}
 
 		public User? GetById(int id)
 		{
-			throw new NotImplementedException();
+			return _users.FirstOrDefault(u => u.Id == id);
 		}
 
 		public IList<User> GetList()
 		{
-			throw new NotImplementedException();
+			return _users.ToList();
 		}
 
 		public void Update(User entity)
