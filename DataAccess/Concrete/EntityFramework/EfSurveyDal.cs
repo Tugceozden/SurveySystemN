@@ -17,6 +17,7 @@ namespace DataAccess.Concrete.EntityFramework
 		}
 
 		public Survey? GetById(int id)
+
 		{
 			throw new NotImplementedException();
 		}
