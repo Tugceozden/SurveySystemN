@@ -7,7 +7,7 @@ namespace Business.Abstract
 	public  interface IParticipantService
 	{
 
-		public Participant AddParticipant(Participant participant);
+		public Participant Add(Participant participant);
 
 		public IList<Participant> GetList();	
 	}
