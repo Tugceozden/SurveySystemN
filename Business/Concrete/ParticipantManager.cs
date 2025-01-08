@@ -16,10 +16,10 @@ namespace Business.Concrete
 			_participantDal = participantDal; //new InMemoryParticipantDal();	// başka katmanların class'ları new'lenmez . O yüzden dependency injection kullanıyoruz.
      }
 
-		public Participant Add(Participant addparticipantRequest)
+		public Participant Add(Participant participant)
 		{
-			_participantDal.Add(addparticipantRequest);
-			return addparticipantRequest;
+			_participantDal.Add(participant);
+			return participant;
 		}
 
 
