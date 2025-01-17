@@ -30,8 +30,8 @@ namespace WebAPI.Controllers
 		[HttpPost] //POST http://localhost:5161/api/participants
 		public Participant Add(Participant addParticipantRequest) 
 		{
-			Participant addParticipant =_participantService.Add(addParticipantRequest);
-		    return addParticipant;
+			Participant addedParticipant =_participantService.Add(addParticipantRequest);
+		    return addedParticipant;
 		}
 
 
