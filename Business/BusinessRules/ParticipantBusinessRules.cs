@@ -17,7 +17,7 @@ namespace Business.BusinessRules
 
 
 		public void CheckIfParticipantNameNotExists(string participantName)
-		{
+	{
 			bool isExists = _participantDal.GetList().Any(p => p.Name == participantName);
 			if (isExists)
 			{
