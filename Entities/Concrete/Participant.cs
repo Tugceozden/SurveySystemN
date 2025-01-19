@@ -19,8 +19,19 @@ namespace Entities.Concrete
 		public string Email { get; set; }
 		public Guid UserID { get; set; }
 
+		public Participant()
+		{
+
+		}
+
+		public Participant (string name,string surname,string email)
+		{
+			Name = name;
+			Surname = surname;
+			Email = email;	
 
 
+		}
 
 		public virtual ICollection<SurveyResult> SurveyResults { get; set; }
 		public virtual User User { get; set; }

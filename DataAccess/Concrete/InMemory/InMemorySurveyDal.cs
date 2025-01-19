@@ -12,6 +12,11 @@ namespace DataAccess.Concrete.InMemory
 {
 	public class InMemorySurveyDal :InMemoryEntityRepositoryBase<Survey,int>, ISurveyDal
 	{
-		
+		protected override int generateId()
+		{
+			int nextId = _entities.Count == 0 ? 1 : _entities.Max(e => e.Id) + 1;
+			return nextId;
+		}
+
 	}
 }
