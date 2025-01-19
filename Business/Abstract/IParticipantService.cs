@@ -1,6 +1,7 @@
 ﻿
 
-using Business.Requests.Paticipant;
+using Business.Requests.Participant;
+using Business.Responses.Participant;
 using Entities.Concrete;
 
 namespace Business.Abstract
@@ -8,7 +9,7 @@ namespace Business.Abstract
 	public  interface IParticipantService
 	{
 
-		public Participant Add(AddParticipantRequest request);
+		public AddParticipantResponse Add(AddParticipantRequest request);
 
 		public IList<Participant> GetList();	
 	}
