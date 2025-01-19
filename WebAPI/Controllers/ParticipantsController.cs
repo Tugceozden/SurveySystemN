@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
+using Business.Requests.Paticipant;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -28,9 +29,9 @@ namespace WebAPI.Controllers
 			return participantList;
 		}
 		[HttpPost] //POST http://localhost:5161/api/participants
-		public Participant Add(Participant addParticipantRequest) 
+		public Participant Add(AddParticipantRequest request) 
 		{
-			Participant addedParticipant =_participantService.Add(addParticipantRequest);
+			Participant addedParticipant =_participantService.Add(request);
 		    return addedParticipant;
 		}
 
