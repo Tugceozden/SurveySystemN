@@ -1,6 +1,10 @@
+using DataAccess.Abstract;
+using DataAccess.Concrete.InMemory;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<IParticipantDal,InMemoryParticipantDal>();	
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
