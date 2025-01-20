@@ -9,9 +9,10 @@ namespace Core.DataAccess.InMemory
 	{
 		protected readonly HashSet<TEntity> _entities = new();
 
-		protected abstract TEntityId generateId(
+		protected abstract TEntityId generateId();
 		public void Add(TEntity entity)
 		{
+			entity.Id = generateId();
 			entity.CreatedAt = DateTime.UtcNow;	
 			_entities.Add(entity);	
 		}
