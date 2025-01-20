@@ -18,9 +18,9 @@ namespace WebAPI.Controllers
 	{
 		private readonly IParticipantService _participantService;
 
-		public ParticipantsController()
+		public ParticipantsController(IParticipantService  participantService)
 		{
-			_participantService = ServiceRegistration.ParticipantService;
+			_participantService =participantService;
 		}	
 
 
