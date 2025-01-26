@@ -11,7 +11,6 @@ namespace Business.Abstract
 
 		public AddParticipantResponse Add(AddParticipantRequest request);
 
-		public GetParticipantListResponse GetList(GetParticipantListRequest request);
-		IList<Participant> GetList();
+		public GetParticipantListResponse GetList(GetParticipantListRequest request);	
 	}
 }
