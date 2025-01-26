@@ -18,26 +18,23 @@ namespace Business.DependencyResolvers
 
 		public static IServiceCollection AddBusinessServices(this IServiceCollection services) 
 		
-		{ 
-		
-		
-		
-		
-		
-		}
-
-		public static void AddBusinessServices(this IServiceCollection services)
-
 		{
-			services.AddSingleton<IParticipantService, ParticipantManager>();
-			services.AddSingleton<IParticipantDal, InMemoryParticipantDal>();
-			services.AddSingleton<ParticipantBusinessRules>();
-			services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-			return services;
+				services.AddSingleton<IParticipantService, ParticipantManager>();
+				services.AddSingleton<IParticipantDal, InMemoryParticipantDal>();
+				services.AddSingleton<ParticipantBusinessRules>();
+				services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+				return services;
+
+
+			
+
 
 
 		}
+
+		
 
 	}
 }

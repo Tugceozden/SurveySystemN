@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using Business;
+using Business.Abstract;
 using Business.Concrete;
 using Business.Requests.Participant;
 using Business.Requests.Participant;
@@ -26,10 +27,10 @@ namespace WebAPI.Controllers
 
 
 		[HttpGet] //GET http://localhost:5161/api/participants
-		public ICollection<Participant> Getlist() 
+		public GetParticipantListResponse Getlist(GetParticipantListRequest request) 
 		{
-			IList<Participant>participantList = _participantService.GetList();
-			return participantList;
+			GetParticipantListResponse response  = _participantService.GetList(request);
+			return response;
 		}
 		[HttpPost] //POST http://localhost:5161/api/participants
 		public ActionResult<AddParticipantResponse>Add(AddParticipantRequest request) 

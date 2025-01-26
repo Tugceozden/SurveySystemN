@@ -37,11 +37,13 @@ namespace Business.Concrete
 		}
 
 
-		public IList<Participant> GetList()
+		public GetParticipantListResponse GetList(GetParticipantListRequest request)
 		{
 
 			IList<Participant>participantList =_participantDal.GetList();
-			return participantList;
+
+			GetParticipantListResponse response = _mapper.Map<GetParticipantListResponse>(participantList);	
+			return response;
 
 
 		}

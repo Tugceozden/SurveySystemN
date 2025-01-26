@@ -7,6 +7,17 @@ namespace Business
 	{
 		public ICollection<ParticipantListItemDto> Items { get; set; }	
 
+		public GetParticipantListResponse() 
+		{ 
+		   Items= Array.Empty<ParticipantListItemDto>();	
+		}	
+
+		public GetParticipantListResponse(ICollection<ParticipantListItemDto> items)
+		{
+
+			Items= items;	
+		}
+
 
 	}
 }
