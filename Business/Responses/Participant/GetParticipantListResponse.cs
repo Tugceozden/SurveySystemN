@@ -1,10 +1,11 @@
-﻿using Entities.Concrete;
+﻿using Business.Dtos.Participant;
+using Entities.Concrete;
 
 namespace Business
 {
 	public class GetParticipantListResponse
 	{
-		public ICollection<Participant> Items { get; set; }	
+		public ICollection<ParticipantListItemDto> Items { get; set; }	
 
 
 	}
