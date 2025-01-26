@@ -45,5 +45,10 @@ namespace Business.Concrete
 
 
 		}
+
+		public GetParticipantListResponse GetList(GetParticipantListRequest request)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
