@@ -1,5 +1,6 @@
 ﻿
 
+using Core.CrossCuttingConcerns.Exceptions;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
@@ -19,12 +20,16 @@ namespace Business.BusinessRules
 		public void CheckIfParticipantNameNotExists(string participantName)
 	{
 			bool isExists = _participantDal.GetList().Any(p => p.Name == participantName);
-			if (isExists)
-			{
-				throw new Exception("Participant already Exists");
+
+			
+				if (isExists)
+				{
+					throw new BusinessException("Participant already Exists");
 
 
-			}
+				}
+
+			
 
 		}
 	}
