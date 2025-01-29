@@ -1,33 +1,32 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
+
 
 namespace DataAccess.Concrete.EntityFramework
 {
-	public class EfSurveyDal : ISurveyDal
+	public class EfParticipantDal : IParticipantDal
 	{
-		public void Add(Survey entity)
+		public Participant Add(Participant entity)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void Delete(Survey entity)
+		public  Participant Delete(Participant entity)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Survey? GetById(int id)
-
+		public Participant? Get(Func<Participant, bool> predicate)
 		{
 			throw new NotImplementedException();
 		}
 
-		public IList<Survey> GetList() 
+		public IList<Participant> GetList(Func<Participant, bool>? predicate = null)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void Update(Survey entity)
+		public Participant Update(Participant entity)
 		{
 			throw new NotImplementedException();
 		}

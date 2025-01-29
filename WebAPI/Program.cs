@@ -2,6 +2,7 @@ using Business.Abstract;
 using Business.BusinessRules;
 using Business.Concrete;
 using Business.DependencyResolvers;
+using Core.CrossCuttingConcerns.Exceptions;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +22,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseGlobalExceptionHandling();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -34,5 +36,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseMiddleware<ExceptionMiddleware>();
+
 
 app.Run();

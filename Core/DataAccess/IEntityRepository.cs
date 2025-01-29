@@ -9,10 +9,10 @@ namespace Core.DataAccess
 {
 	public  interface IEntityRepository<TEntity,TEntityId>
 	{
-		public IList<TEntity> GetList();
-		public TEntity? GetById(TEntityId id);
-		public void Add(TEntity entity);
-		public void Delete(TEntity entity);
-		public void Update(TEntity entity);
+		public IList<TEntity> GetList(Func<TEntity,bool>? predicate=null);
+		public TEntity? Get(Func<TEntity, bool> predicate );
+		public TEntity Add(TEntity entity);
+		public TEntity Delete(TEntity entity);
+		public TEntity Update(TEntity entity);
 	}
 }

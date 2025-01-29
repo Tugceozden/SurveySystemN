@@ -23,6 +23,7 @@ namespace Business.DependencyResolvers
 				services.AddSingleton<IParticipantService, ParticipantManager>();
 				services.AddSingleton<IParticipantDal, InMemoryParticipantDal>();
 				services.AddSingleton<ParticipantBusinessRules>();
+
 				services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 				return services;

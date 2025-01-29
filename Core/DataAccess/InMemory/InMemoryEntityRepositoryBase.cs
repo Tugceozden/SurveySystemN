@@ -1,8 +1,9 @@
 ﻿using Core.Entities;
+using System.Collections.Immutable;
 
 namespace Core.DataAccess.InMemory
 {
-	public abstract class InMemoryEntityRepositoryBase<TEntity, TEntityId> 
+	public abstract class InMemoryEntityRepositoryBase<TEntity, TEntityId>
 		: IEntityRepository<TEntity, TEntityId>
 		where TEntity : class, IEntity<TEntityId>, new()
 
@@ -10,38 +11,47 @@ namespace Core.DataAccess.InMemory
 		protected readonly HashSet<TEntity> _entities = new();
 
 		protected abstract TEntityId generateId();
-		public void Add(TEntity entity)
+		public TEntity Add(TEntity entity)
 		{
 			entity.Id = generateId();
-			entity.CreatedAt = DateTime.UtcNow;	
-			_entities.Add(entity);	
+			entity.CreatedAt = DateTime.UtcNow;
+			_entities.Add(entity);
+			return entity;
+
 		}
 
-		public void Delete(TEntity entity)
+		public TEntity Delete(TEntity entity)
 		{
 			entity.DeletedAt = DateTime.UtcNow;
-			_entities.Remove(entity);	
+			return entity;
 
 		}
 
-		public TEntity? GetById(TEntityId id)
+		public TEntity? Get(Func<TEntity, bool> predicate)
 		{
-         TEntity? entity=_entities.FirstOrDefault(e =>e.Id.Equals(id)&& e.DeletedAt.HasValue ==false);
+			TEntity? entity = _entities.FirstOrDefault(predicate);
 			return entity;
 		}
 
-		public IList<TEntity> GetList()
+		public IList<TEntity> GetList(Func<TEntity, bool>? predicate = null)
 		{
-			IList<TEntity> entities = _entities
-		  .Where(e => e.DeletedAt.HasValue == false)
-			.ToList();
-			return entities;	
-		}
-		
-		public void Update(TEntity entity)
-		{
-			entity.UpdateAt = DateTime.UtcNow;		}
+			IEnumerable<TEntity> query = _entities;
+			if(predicate is not null)
+			{
+				query=query.Where(predicate).AsQueryable();
 
+			}
+			return query.ToArray();
+		}
+
+		public TEntity Update(TEntity entity)
+		{
+			entity.UpdateAt = DateTime.UtcNow;
+			return entity;
+
+
+		}
+	}
 		
 	}
-}
+
