@@ -36,12 +36,12 @@ namespace Core.CrossCuttingConcerns.Exceptions
 
 
 
-            if(exception is BusinessException businessException) 
-            {
-                return createBusinessProblemDetailsResponse(httpContext, businessException);
+            if(exception is BusinessException businessException)
+				return createBusinessProblemDetailsResponse(httpContext, businessException);
 
-                return createInternalProblemDetailsResponse(httpContext,exception);
-            }
+
+			return createInternalProblemDetailsResponse(httpContext,exception);
+            
             
 		}
 
@@ -63,7 +63,7 @@ namespace Core.CrossCuttingConcerns.Exceptions
 		private Task createBusinessProblemDetailsResponse(HttpContext httpContext, BusinessException exception)
 		{
             httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            BusinessProblemDetails businessProblemDetails = new()
+            ProblemDetails problemDetails = new()
             {
                 Title = "Business Exception",
                 Status = StatusCodes.Status400BadRequest,
