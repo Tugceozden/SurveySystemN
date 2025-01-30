@@ -1,39 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
-using  Core.Entities; // Core.Entities eklendi
+﻿using Core.Entities;
+using Entities.Concrete;
 
-
-namespace Entities.Concrete
+public class Participant : Entity<int>
 {
-	public  class Participant:Entity<int>
+	public string Name { get; set; }
+	public string Surname { get; set; }
+	public int Age { get; set; }
+	public string City { get; set; }
+	public string Email { get; set; }
+	public Guid UserID { get; set; }
+	public virtual ICollection<SurveyResult> SurveyResults { get; set; }
+	public virtual User User { get; set; }
+
+	// Parametresiz Constructor
+	public Participant()
 	{
-		public string Name { get; set; }
-		public string Surname { get; set; }
-		public int Age { get; set; }
-		public string City { get; set; }
-		public string Email { get; set; }
-		public Guid UserID { get; set; }
+		UserID = Guid.NewGuid(); // Varsayılan olarak yeni bir GUID oluşturur
+		SurveyResults = new List<SurveyResult>(); // Null referans hatasını önler
+	}
 
-		public Participant()
-		{
-
-		}
-
-		public Participant (string name,string surname,string email)
-		{
-			Name = name;
-			Surname = surname;
-			Email = email;	
-
-
-		}
-
-		public virtual ICollection<SurveyResult> SurveyResults { get; set; }
-		public virtual User User { get; set; }
+	// Parametreli Constructor
+	public Participant(string name, string surname, string email) : this() // Varsayılan constructor'ı çağırır
+	{
+		Name = name;
+		Surname = surname;
+		Email = email;
 	}
 }

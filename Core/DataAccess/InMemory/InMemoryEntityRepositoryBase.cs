@@ -8,14 +8,14 @@ namespace Core.DataAccess.InMemory
 		where TEntity : class, IEntity<TEntityId>, new()
 
 	{
-		protected readonly HashSet<TEntity> _entities = new();
+		protected readonly HashSet<TEntity> Entities = new();
 
 		protected abstract TEntityId generateId();
 		public TEntity Add(TEntity entity)
 		{
 			entity.Id = generateId();
 			entity.CreatedAt = DateTime.UtcNow;
-			_entities.Add(entity);
+			Entities.Add(entity);
 			return entity;
 
 		}
@@ -29,13 +29,13 @@ namespace Core.DataAccess.InMemory
 
 		public TEntity? Get(Func<TEntity, bool> predicate)
 		{
-			TEntity? entity = _entities.FirstOrDefault(predicate);
+			TEntity? entity = Entities.FirstOrDefault(predicate);
 			return entity;
 		}
 
 		public IList<TEntity> GetList(Func<TEntity, bool>? predicate = null)
 		{
-			IEnumerable<TEntity> query = _entities;
+			IEnumerable<TEntity> query = Entities;
 			if(predicate is not null)
 			{
 				query=query.Where(predicate).AsQueryable();
