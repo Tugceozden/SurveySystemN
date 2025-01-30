@@ -9,7 +9,7 @@ namespace Business.Abstract
 
      public GetQuestionListResponse GetList(GetQuestionListRequest request);
 
-     public GetQuestionByIdResponse GetById(GetQuestionListRequest request);
+     public GetQuestionByIdResponse GetById(GetQuestionByIdRequest request);
 
 		public AddQuestionResponse Add(AddQuestionRequest request);
 		public UpdateQuestionResponse Update(UpdateQuestionRequest request);
