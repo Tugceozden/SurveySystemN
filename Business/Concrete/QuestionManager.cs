@@ -28,10 +28,12 @@ namespace Business.Concrete
 		{
 			_questionBusinessRules.ValidateQuestionText(request.QuestionText);
 
-			var questionEntity = _mapper.Map<Question>(request);
-			_questionDal.Add(questionEntity);
+			var questionToAdd = _mapper.Map<Question>(request);
+			Question updatedQuestion= _questionDal.Add(questionToAdd);
 
-			return _mapper.Map<AddQuestionResponse>(questionEntity);
+
+			var response =  _mapper.Map<AddQuestionResponse>(updatedQuestion);
+			return response;	
 		}
 
 		public DeleteQuestionResponse Delete(DeleteQuestionRequest request)
@@ -46,7 +48,8 @@ namespace Business.Concrete
 
 		public GetQuestionListResponse GetList(GetQuestionListRequest request)
 		{
-			throw new NotImplementedException();
+
+			var questionList = _questionDal.GetList();
 		}
 
 		public UpdateQuestionResponse Update(UpdateQuestionRequest request)
