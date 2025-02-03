@@ -2,6 +2,7 @@
 
 using Core.CrossCuttingConcerns.Exceptions;
 using DataAccess.Abstract;
+using Entities.Concrete;
 using System.ComponentModel.DataAnnotations;
 
 namespace Business.BusinessRules
@@ -21,5 +22,14 @@ namespace Business.BusinessRules
 			}
 		}
 
+		public void CheckIfQuestionExists(Question? questionToDelete)
+		{
+
+			if (questionToDelete == null) 
+			{
+				throw new BusinessException("Question not found.");
+			
+			}
+		}
 	}
 }

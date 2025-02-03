@@ -39,7 +39,13 @@ namespace Business.Concrete
 
 		public DeleteQuestionResponse Delete(DeleteQuestionRequest request)
 		{
-			throw new NotImplementedException();
+
+			Question?  questionToDelete = _questionDal.Get(predicate: question => question.Id == request.Id);
+			_questionBusinessRules.CheckIfQuestionExists(questionToDelete);
+
+			Question deletedQuestion =_questionDal.Delete(questionToDelete);	
+			var response =_mapper.Map<DeleteQuestionResponse>(deletedQuestion);
+			return response;	
 		}
 
 		public GetQuestionByIdResponse GetById(GetQuestionByIdRequest request)
