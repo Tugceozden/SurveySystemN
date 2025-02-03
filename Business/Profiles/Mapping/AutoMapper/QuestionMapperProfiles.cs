@@ -16,6 +16,11 @@ namespace Business.Profiles.Mapping.AutoMapper
             CreateMap<Question, QuestionListItemDto>();
 			CreateMap<IList<Question>, GetQuestionListResponse>()
             .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src));
+            CreateMap<Question, DeleteQuestionResponse>();
+            CreateMap<Question, GetQuestionByIdResponse>();
+            CreateMap<UpdateQuestionRequest,Question>();
+            CreateMap<Question,UpdateQuestionResponse>();
+
 
         }
 

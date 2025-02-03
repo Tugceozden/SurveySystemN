@@ -27,7 +27,7 @@ namespace Business.BusinessRules
 
 			if (questionToDelete == null) 
 			{
-				throw new BusinessException("Question not found.");
+				throw new NotFoundException("Question not found.");
 			
 			}
 		}

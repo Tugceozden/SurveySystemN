@@ -44,13 +44,27 @@ namespace Business.Concrete
 			_questionBusinessRules.CheckIfQuestionExists(questionToDelete);
 
 			Question deletedQuestion =_questionDal.Delete(questionToDelete);	
+
+			
+			 Question deleteQuestion= _questionDal.Delete(questionToDelete!);
+			
+			
+
+
 			var response =_mapper.Map<DeleteQuestionResponse>(deletedQuestion);
 			return response;	
 		}
 
 		public GetQuestionByIdResponse GetById(GetQuestionByIdRequest request)
 		{
-			throw new NotImplementedException();
+
+			Question? question = _questionDal.Get(predicate:question => question.Id == request.Id);	
+			_questionBusinessRules.CheckIfQuestionExists(question);
+			var response=_mapper.Map<GetQuestionByIdResponse>(question);	
+			return response;	
+
+
+
 		}
 
 		public GetQuestionListResponse GetList(GetQuestionListRequest request)
@@ -74,7 +88,17 @@ namespace Business.Concrete
 
 		public UpdateQuestionResponse Update(UpdateQuestionRequest request)
 		{
-			throw new NotImplementedException();
+			Question? questionToUpdate = _questionDal.Get(predicate: question => question.Id == request.Id);
+			_questionBusinessRules.CheckIfQuestionExists(questionToUpdate);
+
+			questionToUpdate=_mapper.Map(request ,questionToUpdate);	
+			Question updatedQuestion=_questionDal.Update(questionToUpdate);
+
+
+			var response =_mapper.Map<UpdateQuestionResponse>(updatedQuestion);	
+			return response;	
+
 		}
+
 	}
 }
