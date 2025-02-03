@@ -3,6 +3,7 @@
 using AutoMapper;
 using Business.Abstract;
 using Business.BusinessRules;
+using Business.Dtos.Question;
 using Business.Requests.Question;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -48,8 +49,21 @@ namespace Business.Concrete
 
 		public GetQuestionListResponse GetList(GetQuestionListRequest request)
 		{
+			IList<Question> questionList = _questionDal.GetList(question =>
+	   request.FilterBySurveyId == null || question.SurveyId == request.FilterBySurveyId
 
-			var questionList = _questionDal.GetList();
+   );
+			var response = _mapper.Map<GetQuestionListResponse>(questionList);	
+			//{
+			//	Items = _mapper.Map<List<QuestionListItemDto>>(questionList),
+			//	TotalCount = questionList.Count,
+			//	PageNumber = request.PageNumber,
+			//	PageSize = request.PageSize
+			//};
+
+			return response;
+
+
 		}
 
 		public UpdateQuestionResponse Update(UpdateQuestionRequest request)
