@@ -4,9 +4,11 @@ using AutoMapper;
 using Business.Abstract;
 using Business.BusinessRules;
 using Business.Dtos.Question;
+using Business.Profiles.Validation.FluentValidation.Question;
 using Business.Requests.Question;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using FluentValidation;
 using System.ComponentModel.DataAnnotations;
 
 namespace Business.Concrete
@@ -27,7 +29,17 @@ namespace Business.Concrete
 
 		public AddQuestionResponse Add(AddQuestionRequest request)
 		{
-			_questionBusinessRules.ValidateQuestionText(request.QuestionText);
+			AddQuestionRequestValidator validator = new();
+			//FluentValidation.Results.ValidationResult result = validator.Validate(request);
+			//if (!result.IsValid)
+			//{
+			//	throw new FluentValidation.ValidationException(result.Errors);
+					
+			//}
+
+			validator.ValidateAndThrow(request);
+				
+				_questionBusinessRules.ValidateQuestionText(request.QuestionText);
 
 			var questionToAdd = _mapper.Map<Question>(request);
 			Question addedQuestion= _questionDal.Add(questionToAdd);
