@@ -30,10 +30,10 @@ namespace Business.Concrete
 			_questionBusinessRules.ValidateQuestionText(request.QuestionText);
 
 			var questionToAdd = _mapper.Map<Question>(request);
-			Question updatedQuestion= _questionDal.Add(questionToAdd);
+			Question addedQuestion= _questionDal.Add(questionToAdd);
 
 
-			var response =  _mapper.Map<AddQuestionResponse>(updatedQuestion);
+			var response =  _mapper.Map<AddQuestionResponse>(addedQuestion);
 			return response;	
 		}
 

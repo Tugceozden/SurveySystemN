@@ -24,6 +24,18 @@ namespace Business.DependencyResolvers
 				services.AddSingleton<IParticipantDal, InMemoryParticipantDal>();
 				services.AddSingleton<ParticipantBusinessRules>();
 
+
+			    services.AddSingleton<IQuestionService, QuestionManager>()
+				.AddSingleton<IQuestionDal,InMemoryQuestionDal>()
+				.AddSingleton<QuestionBusinessRules>();
+
+
+
+
+
+
+
+
 				services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 				return services;
