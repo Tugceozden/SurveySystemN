@@ -41,6 +41,7 @@ namespace Business.Concrete
 				
 				_questionBusinessRules.ValidateQuestionText(request.QuestionText);
 
+
 			var questionToAdd = _mapper.Map<Question>(request);
 			Question addedQuestion= _questionDal.Add(questionToAdd);
 

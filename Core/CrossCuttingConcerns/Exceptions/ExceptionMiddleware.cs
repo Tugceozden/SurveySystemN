@@ -1,5 +1,6 @@
 ﻿
 
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -40,11 +41,38 @@ namespace Core.CrossCuttingConcerns.Exceptions
 				return createBusinessProblemDetailsResponse(httpContext, businessException);
             if (exception is NotFoundException notFoundException)
                 return createNotFoundProblemDetailsResponse(httpContext, notFoundException);
-                    
+              if(exception is ValidationException validationException) 
+                return createValidationProblemDetailsResponse( httpContext, validationException); 
 
 			return createInternalProblemDetailsResponse(httpContext,exception);
             
             
+		}
+
+		private  Task createValidationProblemDetailsResponse(HttpContext httpContext, ValidationException validationException)
+		{
+            httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+            ValidationProblemDetails validationProblemDetails = new (
+                title :"Validation Error",
+
+                type:"http://doc.surveysystemn.com/validation-error",
+
+                instance:httpContext.Request.Path,
+                detail:"Please refer to the errors property for additional details.",
+
+                errors:validationException.Errors.GroupBy
+                (e=>e.PropertyName,e=>e.ErrorMessage)
+                .ToDictionary(
+                    failureGrup=>failureGrup.Key, 
+                    failureGrup=>failureGrup.ToArray())
+                
+
+
+                )
+            {
+                Status = StatusCodes.Status400BadRequest
+            };
+            return httpContext.Response.WriteAsync(validationProblemDetails.ToString());
 		}
 
 		private Task createNotFoundProblemDetailsResponse(HttpContext httpContext, NotFoundException notFoundException)
