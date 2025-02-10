@@ -15,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddSingleton<IParticipantDal, InMemoryParticipantDal>();
 //builder.Services.AddSingleton<ParticipantBusinessRules>();
 //builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-builder.Services.AddBusinessServices();
+builder.Services.AddBusinessServices(builder.Configuration);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

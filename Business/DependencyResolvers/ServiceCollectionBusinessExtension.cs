@@ -4,6 +4,7 @@ using Business.Abstract;
 using Business.BusinessRules;
 using Business.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.EntityFramework.Contexts;
 using DataAccess.Concrete.InMemory;
 using Microsoft.EntityFrameworkCore;
@@ -23,9 +24,9 @@ namespace Business.DependencyResolvers
 		
 		{
 
-				services.AddSingleton<IParticipantService, ParticipantManager>();
-				services.AddSingleton<IParticipantDal, InMemoryParticipantDal>();
-				services.AddSingleton<ParticipantBusinessRules>();
+				services.AddScoped<IParticipantService, ParticipantManager>();
+				services.AddScoped<IParticipantDal, EfParticipantDal>();
+				services.AddScoped<ParticipantBusinessRules>();
 
 
 			    services.AddSingleton<IQuestionService, QuestionManager>()
@@ -37,7 +38,7 @@ namespace Business.DependencyResolvers
 
 				services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-			    services.AddDbContext<SurveySystemContext>(options => options.UseSqlServer(configuration.GetConnectionString("SurveySystemMSSQL22"));	
+			services.AddDbContext<SurveySystemContext>(options => options.UseSqlServer(configuration.GetConnectionString("SurveySystemMSSQL22")));	
 
 				return services;
 
