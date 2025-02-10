@@ -4,7 +4,10 @@ using Business.Abstract;
 using Business.BusinessRules;
 using Business.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework.Contexts;
 using DataAccess.Concrete.InMemory;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -16,7 +19,7 @@ namespace Business.DependencyResolvers
 	{
 
 
-		public static IServiceCollection AddBusinessServices(this IServiceCollection services) 
+		public static IServiceCollection AddBusinessServices(this IServiceCollection services,IConfiguration configuration) 
 		
 		{
 
@@ -32,11 +35,9 @@ namespace Business.DependencyResolvers
 
 
 
-
-
-
-
 				services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+			    services.AddDbContext<SurveySystemContext>(options => options.UseSqlServer(configuration.GetConnectionString("SurveySystemMSSQL22"));	
 
 				return services;
 
