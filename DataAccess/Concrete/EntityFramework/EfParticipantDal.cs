@@ -18,6 +18,7 @@ namespace DataAccess.Concrete.EntityFramework
 
 		public Participant Add(Participant entity)
 		{
+			entity.CreatedAt= DateTime.UtcNow;	
 			_context.Participants.Add(entity);	
 			_context.SaveChanges();
 			return entity;	
