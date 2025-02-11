@@ -4,7 +4,7 @@ using Business.Abstract;
 
 namespace Business.Concrete
 {
-	public class ParticipationManager 
+	public class ParticipationManager :IParticipationService
 	{
 		
 	}
