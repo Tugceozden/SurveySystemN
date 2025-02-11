@@ -9,9 +9,9 @@ namespace Entities.Concrete
 {
 	public  class Participation:Entity<int>
 	{
-		public Guid PaticipantId { get; set; }
+		public int PaticipantId { get; set; }
 		public virtual Participant Participant { get; set; }
-		public Guid? SurveyId { get; set; }
+		public int? SurveyId { get; set; }
 		public virtual Survey? Survey { get; set; }
 		public string? Answers { get; set; }  
 	}

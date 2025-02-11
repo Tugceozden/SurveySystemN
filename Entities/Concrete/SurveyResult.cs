@@ -9,8 +9,8 @@ namespace Entities.Concrete
 {
 	public  class SurveyResult:Entity<int>
 	{
-		public Guid? SurveyId { get; set; }
-		public Guid ParticipantId { get; set; }
+		public int? SurveyId { get; set; }
+		public int ParticipantId { get; set; }
 
 
 		public virtual Survey? Survey { get; set; }

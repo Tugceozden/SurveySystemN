@@ -19,7 +19,17 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         {
                 
         }
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<Participant>()
+				.HasOne(p => p.User)
+				.WithMany() // Eğer User'ın birden fazla Participant kaydı olabilir diyorsan WithMany(p => p.Participants) kullan
+				.HasForeignKey(p => p.UserID)
+				.OnDelete(DeleteBehavior.Cascade); // User silinirse Participant kaydı da silinir
+
+			base.OnModelCreating(modelBuilder);
+		}
 
 
-    }
+	}
 }

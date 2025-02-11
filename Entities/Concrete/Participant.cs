@@ -8,19 +8,19 @@ public class Participant : Entity<int>
 	public int Age { get; set; }
 	public string City { get; set; }
 	public string Email { get; set; }
-	public Guid UserID { get; set; }
-	public virtual ICollection<SurveyResult> SurveyResults { get; set; }
+
+	// Foreign Key
+	public int UserID { get; set; } // Guid yerine int yaptık
 	public virtual User User { get; set; }
 
-	// Parametresiz Constructor
+	public virtual ICollection<SurveyResult> SurveyResults { get; set; }
+
 	public Participant()
 	{
-		UserID = Guid.NewGuid(); // Varsayılan olarak yeni bir GUID oluşturur
-		SurveyResults = new List<SurveyResult>(); // Null referans hatasını önler
+		SurveyResults = new List<SurveyResult>();
 	}
 
-	// Parametreli Constructor
-	public Participant(string name, string surname, string email) : this() // Varsayılan constructor'ı çağırır
+	public Participant(string name, string surname, string email) : this()
 	{
 		Name = name;
 		Surname = surname;
