@@ -29,14 +29,18 @@ namespace Business.DependencyResolvers
 				services.AddScoped<ParticipantBusinessRules>();
 
 
-			    services.AddSingleton<IQuestionService, QuestionManager>()
-				.AddSingleton<IQuestionDal,InMemoryQuestionDal>()
-				.AddSingleton<QuestionBusinessRules>();
+			    services.AddScoped<IQuestionService, QuestionManager>()
+				.AddScoped<IQuestionDal,EfQuestionDal>()
+				.AddScoped<QuestionBusinessRules>();
+
+			services.AddScoped<IParticipationService, ParticipationManager>()
+				.AddScoped<IParticipationDal, EfParticipationDal>()
+				.AddScoped<ParticipationBusinessRules>();
+
+			
 
 
-
-
-				services.AddAutoMapper(Assembly.GetExecutingAssembly());
+			services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 			services.AddDbContext<SurveySystemContext>(options => options.UseSqlServer(configuration.GetConnectionString("SurveySystemMSSQL22")));	
 
