@@ -1,5 +1,5 @@
 ﻿using Core.DataAccess;
-using Entities.Concrete;
+using Core.Entities;
 
 public interface IUserDal : IEntityRepository<User, int>
 {

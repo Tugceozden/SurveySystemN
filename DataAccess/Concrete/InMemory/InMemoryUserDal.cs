@@ -1,10 +1,10 @@
 ﻿using Core.DataAccess.InMemory;
-using DataAccess.Abstract;
-using Entities.Concrete;
+using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+
 
 namespace DataAccess.Concrete.InMemory
 {
