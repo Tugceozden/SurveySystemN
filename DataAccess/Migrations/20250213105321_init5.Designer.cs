@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(SurveySystemContext))]
-    [Migration("20250213103906_MigrationName")]
-    partial class MigrationName
+    [Migration("20250213105321_init5")]
+    partial class init5
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
