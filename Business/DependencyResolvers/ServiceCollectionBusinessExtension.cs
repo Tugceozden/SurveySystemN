@@ -37,6 +37,11 @@ namespace Business.DependencyResolvers
 				.AddScoped<IParticipationDal, EfParticipationDal>()
 				.AddScoped<ParticipationBusinessRules>();
 
+
+
+			services
+				.AddScoped<IUserService, UserManager>()
+				.AddScoped<IUserDal, EfUserDal>();
 			
 
 
