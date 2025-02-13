@@ -17,11 +17,15 @@ namespace WebAPI.Controllers
 				
         }
 
-		[HttpPost]
+		[HttpPost("Register")]
        public void Register([FromBody] RegisterRequest request)
 		{
 			_userService.Register(request);	
 		}
-
-    }
+		[HttpPost("Login")]
+		public bool Login([FromBody] LoginRequest request)
+		{
+			return _userService.Login(request);
+		}
+	}
 }

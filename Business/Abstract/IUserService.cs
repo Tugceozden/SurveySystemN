@@ -8,6 +8,7 @@ namespace Business.Abstract
 	{
 
 		void Register(RegisterRequest request);
+		bool Login(LoginRequest request);
 
     }
 }

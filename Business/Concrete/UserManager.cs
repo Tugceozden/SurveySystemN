@@ -16,6 +16,16 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
+		public bool Login(LoginRequest request)
+		{
+			User? user=_userDal.Get(i=>i.Email==request.Email);
+
+			bool isPasswordCorrect = HashingHelper.VerifyPassword(request.Password, user.PasswordHash, user.PasswordSalt); ;
+			return isPasswordCorrect;	
+
+
+		}
+
 		public void Register(RegisterRequest request)
 		{
 			byte[] passwordSalt, passwordHash;
