@@ -9,6 +9,7 @@ using Business.Responses.Participant;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 
 namespace Business.Concrete
 {
@@ -16,17 +17,24 @@ namespace Business.Concrete
 	{
 		private readonly IParticipantDal _participantDal;
 		private readonly ParticipantBusinessRules _participantBusinessRules;
-		private readonly IMapper _mapper;	
-		public ParticipantManager(IParticipantDal participantDal, ParticipantBusinessRules participantBusinessRules, IMapper mapper
+		private readonly IMapper _mapper;
+		private readonly IHttpContextAccessor _httpContextAccessor;
+		public ParticipantManager(IParticipantDal participantDal, ParticipantBusinessRules participantBusinessRules,
+			IMapper mapper, IHttpContextAccessor httpContextAccessor
 			)
 	{
 			_participantDal = participantDal; //new InMemoryParticipantDal();	// başka katmanların class'ları new'lenmez . O yüzden dependency injection kullanıyoruz.
 			_participantBusinessRules = participantBusinessRules;
 			_mapper = mapper;
+			_httpContextAccessor = httpContextAccessor;
      }
 
 		public AddParticipantResponse Add(AddParticipantRequest request)
 		{
+			if (_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+			{
+				throw new Exception("Bu endpointi uygulamak için giriş yapmak durumundasınız.");
+			}
 			_participantBusinessRules.CheckIfParticipantNameNotExists(request.Name);
 			Participant participantToAdd = 
 				_mapper.Map<Participant>(request);

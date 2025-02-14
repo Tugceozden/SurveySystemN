@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Requests.User;
 using Core.Utilities.Security.JWT;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,7 @@ namespace WebAPI.Controllers
 			_userService.Register(request);	
 		}
 		[HttpPost("Login")]
+		[Authorize]
 		public AccessToken Login([FromBody] LoginRequest request)
 		{
 			return _userService.Login(request);

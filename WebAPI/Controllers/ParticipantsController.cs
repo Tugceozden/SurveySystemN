@@ -8,6 +8,7 @@ using Business.Responses.Participant;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,6 +34,7 @@ namespace WebAPI.Controllers
 			return response;
 		}
 		[HttpPost] //POST http://localhost:5161/api/participants
+		[Authorize]
 		public ActionResult<AddParticipantResponse>Add(AddParticipantRequest request) 
 		{
 			AddParticipantResponse response =_participantService.Add(request);
