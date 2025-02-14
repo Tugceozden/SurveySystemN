@@ -4,6 +4,7 @@ using Business.Abstract;
 using Business.Requests.User;
 using Core.Entities;
 using Core.Utilities.Security.Hashing;
+using Core.Utilities.Security.JWT;
 
 namespace Business.Concrete
 {
@@ -11,17 +12,29 @@ namespace Business.Concrete
 	{
 
         private readonly IUserDal _userDal;
-        public UserManager(IUserDal userDal)
+		private readonly ITokenHelper _tokenHelper;
+        
+				
+        
+        public UserManager(IUserDal userDal, ITokenHelper tokenHelper)
         {
             _userDal = userDal;
+			_tokenHelper = tokenHelper;
         }
 
-		public bool Login(LoginRequest request)
+		public AccessToken Login(LoginRequest request)
 		{
 			User? user=_userDal.Get(i=>i.Email==request.Email);
 
-			bool isPasswordCorrect = HashingHelper.VerifyPassword(request.Password, user.PasswordHash, user.PasswordSalt); ;
-			return isPasswordCorrect;	
+			bool isPasswordCorrect = HashingHelper.VerifyPassword(request.Password,
+				user.PasswordHash, user.PasswordSalt); ;
+
+			if (!isPasswordCorrect)
+				throw new  Exception("Şifre yanlış.");
+
+
+			return _tokenHelper.CreateToken(user);
+
 
 
 		}

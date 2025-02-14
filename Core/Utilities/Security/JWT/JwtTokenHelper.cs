@@ -17,7 +17,7 @@ namespace Core.Utilities.Security.JWT
 		public JwtTokenHelper(IConfiguration configuration)
         {
 			_configuration = configuration;
-			_tokenOptions = (TokenOptions?)_configuration.GetSection("TokenOptions");
+			_tokenOptions = _configuration.GetSection("TokenOptions").Get<TokenOptions>(); ;
         }
         public AccessToken CreateToken(User user)
 		{
@@ -49,7 +49,6 @@ namespace Core.Utilities.Security.JWT
 			};
 
 
-			throw new NotImplementedException();
 		}
 	}
 }
